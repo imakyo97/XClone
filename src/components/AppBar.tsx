@@ -5,8 +5,10 @@ import { StyleSheet, View, Image } from 'react-native';
 function AppBar({ children }: PropsWithChildren): React.JSX.Element {
     return (
         <View style={styles.container}>
-            <View style={styles.iconView}>
-                <Image style={styles.icon} source={require('../assets/inko.png')} resizeMode={'contain'}/>
+            <View style={styles.spaceView}>
+                <View style={styles.iconView}>
+                    <Image style={styles.icon} source={require('../assets/inko.png')} resizeMode={'contain'}/>
+                </View>
             </View>
             {children}
         </View>
@@ -19,8 +21,11 @@ const styles = StyleSheet.create({
         paddingLeft: 16,
         paddingRight: 16,
         flexDirection: 'row',
-        justifyContent: 'space-between',
         alignItems: 'center',
+    },
+    spaceView: {
+        flex: 1,
+        alignItems: 'flex-start',
     },
     icon: {
         width: '100%',

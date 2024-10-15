@@ -5,6 +5,7 @@ import {
   Text,
   Image,
   Pressable,
+  View,
 } from 'react-native';
 import AppBar from './src/components/AppBar';
 
@@ -13,9 +14,11 @@ function App(): React.JSX.Element {
     <SafeAreaView style={styles.container}>
       <AppBar>
         <Image style={styles.xIcon} source={require('./src/assets/X-Logo.jpg')} resizeMode={'cover'}/>
-        <Pressable style={styles.upgrade} onPress={() => {}}>
-          <Text>アップグレード</Text>
-        </Pressable>
+        <View style={styles.spaceView}>
+          <Pressable style={styles.upgrade} onPress={() => {}}>
+            <Text>アップグレード</Text>
+          </Pressable>
+        </View>
       </AppBar>
     </SafeAreaView>
   );
@@ -28,6 +31,10 @@ const styles = StyleSheet.create({
   xIcon: {
     width: 32,
     height: 32,
+  },
+  spaceView: {
+    flex: 1,
+    alignItems: 'flex-end',
   },
   upgrade: {
     width: 120,
