@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { PropsWithChildren } from 'react';
 import { StyleSheet, View, Image } from 'react-native';
 
-function AppBar(): React.JSX.Element {
+
+function AppBar({ children }: PropsWithChildren): React.JSX.Element {
     return (
         <View style={styles.container}>
             <View style={styles.iconView}>
                 <Image style={styles.icon} source={require('../assets/inko.png')} resizeMode={'contain'}/>
             </View>
+            {children}
         </View>
     );
 }
@@ -14,6 +16,11 @@ function AppBar(): React.JSX.Element {
 const styles = StyleSheet.create({
     container: {
         height: 50,
+        paddingLeft: 16,
+        paddingRight: 16,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
     },
     icon: {
         width: '100%',
@@ -21,9 +28,9 @@ const styles = StyleSheet.create({
     },
     iconView: {
         backgroundColor: 'gray',
-        width: 32,
-        height: 32,
-        borderRadius: 16,
+        width: 40,
+        height: 40,
+        borderRadius: 20,
     },
 });
 
