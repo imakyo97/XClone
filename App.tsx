@@ -8,6 +8,7 @@ import {
   View,
 } from 'react-native';
 import AppBar from './src/components/AppBar';
+import TabBar from './src/components/TabBar';
 
 function App(): React.JSX.Element {
   return (
@@ -20,6 +21,7 @@ function App(): React.JSX.Element {
           </Pressable>
         </View>
       </AppBar>
+      <TabBar/>
     </SafeAreaView>
   );
 }
