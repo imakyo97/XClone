@@ -2,13 +2,13 @@ import React from 'react';
 import {
   SafeAreaView,
   StyleSheet,
-  Text,
 } from 'react-native';
+import AppBar from './src/components/AppBar';
 
 function App(): React.JSX.Element {
   return (
     <SafeAreaView style={styles.container}>
-      <Text>あああ</Text>
+      <AppBar/>
     </SafeAreaView>
   );
 }
