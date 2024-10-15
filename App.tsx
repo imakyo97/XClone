@@ -3,6 +3,7 @@ import {
   SafeAreaView,
   StyleSheet,
   Text,
+  Image,
 } from 'react-native';
 import AppBar from './src/components/AppBar';
 
@@ -10,7 +11,7 @@ function App(): React.JSX.Element {
   return (
     <SafeAreaView style={styles.container}>
       <AppBar>
-        <Text>あああ</Text>
+        <Image style={styles.xIcon} source={require('./src/assets/X-Logo.jpg')} resizeMode={'cover'}/>
         <Text>いいい</Text>
       </AppBar>
     </SafeAreaView>
@@ -20,6 +21,10 @@ function App(): React.JSX.Element {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  xIcon: {
+    width: 32,
+    height: 32,
   },
 });
 
