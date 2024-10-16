@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback, useState } from 'react';
 import { StyleSheet, View, Image, Pressable, Text, TextInput } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -11,6 +11,8 @@ import AppBar from './src/components/AppBar';
 const Tab = createBottomTabNavigator();
 
 export default function App() {
+  const searchHeader  = useCallback(() => <SearchHeader/>, []);
+
   return (
     <SafeAreaProvider>
       <NavigationContainer>
@@ -19,7 +21,7 @@ export default function App() {
             name="Home"
             component={Home}
             options={{
-              header: () => <HomeHeader/>,
+              header: HomeHeader,
               tabBarIcon: HomeIcon,
             }}
           />
@@ -27,7 +29,7 @@ export default function App() {
             name="Search"
             component={Search}
             options={{
-              header: () => <SearchHeader/>,
+              header: searchHeader,
               tabBarIcon: SearchIcon,
             }}
           />
@@ -35,23 +37,23 @@ export default function App() {
             name="Community"
             component={Community}
             options={{
-              header: () => <HomeHeader/>,
+              header: CommunityHeader,
               tabBarIcon: CommunityIcon,
             }}
           />
-                    <Tab.Screen
+          <Tab.Screen
             name="Notification"
             component={Notification}
             options={{
-              header: () => <HomeHeader/>,
+              header: NotificationHeader,
               tabBarIcon: NotificationIcon,
             }}
           />
-                    <Tab.Screen
+          <Tab.Screen
             name="Message"
             component={Message}
             options={{
-              header: () => <HomeHeader/>,
+              header: MessageHeader,
               tabBarIcon: MessageIcon,
             }}
           />
@@ -85,7 +87,7 @@ const HomeIcon = ({ focused } : { focused: boolean }) => {
 };
 
 const SearchHeader = () => {
-  const [text, onChangeText] = React.useState('');
+  const [text, onChangeText] = useState('');
 
   return (
     <AppBar>
@@ -96,7 +98,7 @@ const SearchHeader = () => {
           placeholder="検索"
         />
       <View style={styles.spaceView}>
-        <Pressable style={styles.settings}>
+        <Pressable style={styles.pressableIcon}>
           <Ionicons name="settings-outline" size={24}/>
         </Pressable>
       </View>
@@ -116,6 +118,22 @@ const SearchIcon = ({ focused } : { focused: boolean }) => {
   );
 };
 
+const CommunityHeader = () => (
+  <AppBar>
+    <Text style={styles.title}>コミュニティ</Text>
+    <View style={styles.spaceView}>
+      <View style={styles.row}>
+        <Pressable style={styles.pressableIcon}>
+            <Ionicons name="search-outline" size={24}/>
+        </Pressable>
+        <Pressable style={styles.pressableIcon}>
+          <Ionicons name="person-add-outline" size={24}/>
+        </Pressable>
+      </View>
+    </View>
+  </AppBar>
+);
+
 const CommunityIcon = ({ focused } : { focused: boolean }) => {
   let type = '';
 
@@ -128,6 +146,17 @@ const CommunityIcon = ({ focused } : { focused: boolean }) => {
   );
 };
 
+const NotificationHeader = () => (
+  <AppBar>
+    <Text style={styles.title}>通知</Text>
+    <View style={styles.spaceView}>
+      <Pressable style={styles.pressableIcon}>
+        <Ionicons name="settings-outline" size={24}/>
+      </Pressable>
+    </View>
+  </AppBar>
+);
+
 const NotificationIcon = ({ focused } : { focused: boolean }) => {
   let type = '';
 
@@ -139,6 +168,17 @@ const NotificationIcon = ({ focused } : { focused: boolean }) => {
     <Ionicons name={'notifications' + type} size={24}/>
   );
 };
+
+const MessageHeader = () => (
+  <AppBar>
+    <Text style={styles.title}>メッセージ</Text>
+    <View style={styles.spaceView}>
+      <Pressable style={styles.pressableIcon}>
+        <Ionicons name="settings-outline" size={24}/>
+      </Pressable>
+    </View>
+  </AppBar>
+);
 
 const MessageIcon = ({ focused } : { focused: boolean }) => {
   let type = '';
@@ -171,7 +211,7 @@ const styles = StyleSheet.create({
     borderColor: 'gray',
     borderRadius: 16,
   },
-  settings: {
+  pressableIcon: {
     width: 40,
     height: 40,
     justifyContent: 'center',
@@ -185,5 +225,13 @@ const styles = StyleSheet.create({
     padding: 10,
     backgroundColor: 'lightgray',
     borderRadius: 20,
+  },
+  row: {
+    flexDirection: 'row',
+  },
+  title: {
+    fontWeight: 'bold',
+    fontSize: 20,
+    textAlign: 'center',
   },
 });
