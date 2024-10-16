@@ -1,10 +1,12 @@
 import React, { PropsWithChildren } from 'react';
 import { StyleSheet, View, Image } from 'react-native';
-
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 function AppBar({ children }: PropsWithChildren): React.JSX.Element {
+    const insets = useSafeAreaInsets();
+
     return (
-        <View style={styles.container}>
+        <View style={[styles.container, { marginTop: insets.top }]}>
             <View style={styles.spaceView}>
                 <View style={styles.iconView}>
                     <Image style={styles.icon} source={require('../assets/inko.png')} resizeMode={'contain'}/>
