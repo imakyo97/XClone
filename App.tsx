@@ -1,8 +1,9 @@
-import * as React from 'react';
+import React from 'react';
 import { StyleSheet, View, Image, Pressable, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import { Home, Search, Community, Notification, Message } from './src/screens';
 import AppBar from './src/components/AppBar';
@@ -19,6 +20,7 @@ export default function App() {
             component={Home}
             options={{
               header: () => <HomeHeader/>,
+              tabBarIcon: HomeIcon,
             }}
           />
           <Tab.Screen
@@ -26,6 +28,7 @@ export default function App() {
             component={Search}
             options={{
               header: () => <HomeHeader/>,
+              tabBarIcon: SearchIcon,
             }}
           />
           <Tab.Screen
@@ -33,6 +36,7 @@ export default function App() {
             component={Community}
             options={{
               header: () => <HomeHeader/>,
+              tabBarIcon: CommunityIcon,
             }}
           />
                     <Tab.Screen
@@ -40,6 +44,7 @@ export default function App() {
             component={Notification}
             options={{
               header: () => <HomeHeader/>,
+              tabBarIcon: NotificationIcon,
             }}
           />
                     <Tab.Screen
@@ -47,6 +52,7 @@ export default function App() {
             component={Message}
             options={{
               header: () => <HomeHeader/>,
+              tabBarIcon: MessageIcon,
             }}
           />
         </Tab.Navigator>
@@ -65,6 +71,66 @@ const HomeHeader = () => (
     </View>
   </AppBar>
 );
+
+const HomeIcon = ({ focused } : { focused: boolean }) => {
+  let type = '';
+
+  if (!focused) {
+    type = '-outline';
+  }
+
+  return (
+    <Ionicons name={'home' + type} size={24}/>
+  );
+};
+
+const SearchIcon = ({ focused } : { focused: boolean }) => {
+  let type = '';
+
+  if (!focused) {
+    type = '-outline';
+  }
+
+  return (
+    <Ionicons name={'search' + type} size={24}/>
+  );
+};
+
+const CommunityIcon = ({ focused } : { focused: boolean }) => {
+  let type = '';
+
+  if (!focused) {
+    type = '-outline';
+  }
+
+  return (
+    <Ionicons name={'people' + type} size={24}/>
+  );
+};
+
+const NotificationIcon = ({ focused } : { focused: boolean }) => {
+  let type = '';
+
+  if (!focused) {
+    type = '-outline';
+  }
+
+  return (
+    <Ionicons name={'notifications' + type} size={24}/>
+  );
+};
+
+const MessageIcon = ({ focused } : { focused: boolean }) => {
+  let type = '';
+
+  if (!focused) {
+    type = '-outline';
+  }
+
+  return (
+    <Ionicons name={'mail' + type} size={24}/>
+  );
+};
 
 const styles = StyleSheet.create({
   xIcon: {
