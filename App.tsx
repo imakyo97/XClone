@@ -4,7 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
-import Home from './src/screens/Home';
+import { Home, Search, Community, Notification, Message } from './src/screens';
 import AppBar from './src/components/AppBar';
 
 const Tab = createBottomTabNavigator();
@@ -17,6 +17,34 @@ export default function App() {
           <Tab.Screen
             name="Home"
             component={Home}
+            options={{
+              header: () => <HomeHeader/>,
+            }}
+          />
+          <Tab.Screen
+            name="Search"
+            component={Search}
+            options={{
+              header: () => <HomeHeader/>,
+            }}
+          />
+          <Tab.Screen
+            name="Community"
+            component={Community}
+            options={{
+              header: () => <HomeHeader/>,
+            }}
+          />
+                    <Tab.Screen
+            name="Notification"
+            component={Notification}
+            options={{
+              header: () => <HomeHeader/>,
+            }}
+          />
+                    <Tab.Screen
+            name="Message"
+            component={Message}
             options={{
               header: () => <HomeHeader/>,
             }}
