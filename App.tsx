@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Image, Pressable, Text } from 'react-native';
+import { StyleSheet, View, Image, Pressable, Text, TextInput } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
@@ -27,7 +27,7 @@ export default function App() {
             name="Search"
             component={Search}
             options={{
-              header: () => <HomeHeader/>,
+              header: () => <SearchHeader/>,
               tabBarIcon: SearchIcon,
             }}
           />
@@ -81,6 +81,26 @@ const HomeIcon = ({ focused } : { focused: boolean }) => {
 
   return (
     <Ionicons name={'home' + type} size={24}/>
+  );
+};
+
+const SearchHeader = () => {
+  const [text, onChangeText] = React.useState('');
+
+  return (
+    <AppBar>
+      <TextInput
+          style={styles.search}
+          onChangeText={onChangeText}
+          value={text}
+          placeholder="検索"
+        />
+      <View style={styles.spaceView}>
+        <Pressable style={styles.settings}>
+          <Ionicons name="settings-outline" size={24}/>
+        </Pressable>
+      </View>
+    </AppBar>
   );
 };
 
@@ -150,5 +170,20 @@ const styles = StyleSheet.create({
     borderStyle: 'solid',
     borderColor: 'gray',
     borderRadius: 16,
+  },
+  settings: {
+    width: 40,
+    height: 40,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  search: {
+    flex: 5,
+    height: 40,
+    marginLeft: 16,
+    marginRight: 16,
+    padding: 10,
+    backgroundColor: 'lightgray',
+    borderRadius: 20,
   },
 });
