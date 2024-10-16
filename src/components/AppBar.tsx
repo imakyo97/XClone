@@ -6,7 +6,7 @@ function AppBar({ children }: PropsWithChildren): React.JSX.Element {
     const insets = useSafeAreaInsets();
 
     return (
-        <View style={[styles.container, { marginTop: insets.top }]}>
+        <View style={[styles.container, { marginTop: insets.top, marginLeft: insets.left, marginRight: insets.left }]}>
             <View style={styles.spaceView}>
                 <View style={styles.iconView}>
                     <Image style={styles.icon} source={require('../assets/inko.png')} resizeMode={'contain'}/>

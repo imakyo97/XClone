@@ -3,12 +3,10 @@ import {
   SafeAreaView,
   StyleSheet,
 } from 'react-native';
-import TabBar from '../components/TabBar';
 
 function Home(): React.JSX.Element {
   return (
     <SafeAreaView style={styles.container}>
-      <TabBar/>
     </SafeAreaView>
   );
 }
