@@ -6,7 +6,7 @@ import {
     Image,
 } from 'react-native';
 import { getWeather } from '../repository/weatherRepository';
-import { WeatherData } from '../model/WeatherData';
+import { WeatherData, getWeatherIcon } from '../model/WeatherData';
 
 function Search(): React.JSX.Element {
     const [weather, setWeather] = useState<WeatherData | null>(null);
@@ -20,7 +20,7 @@ function Search(): React.JSX.Element {
     return (
         <View style={styles.container}>
             <Text>{weather?.name}</Text>
-            <Image style={styles.weatherIcon} source={require('../assets/01d.png')} resizeMode={'contain'}/>
+            <Image style={styles.weatherIcon} source={getWeatherIcon(weather?.weather[0].icon)} resizeMode={'contain'}/>
             <Text>{weather?.weather[0].description}</Text>
             <View style={styles.row}>
                 <Text>{`${weather?.main.temp_max}℃`}</Text>
