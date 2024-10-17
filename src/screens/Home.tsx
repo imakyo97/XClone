@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-const data: [ItemProps] = [
+const data: ItemProps[] = [
     {
         iconPath: require('../assets/kono.jpeg'),
         name: '河野太郎',
