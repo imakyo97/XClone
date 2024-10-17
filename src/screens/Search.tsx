@@ -1,20 +1,30 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {
     StyleSheet,
     View,
     Text,
     Image,
 } from 'react-native';
+import { getWeather } from '../repository/weatherRepository';
+import { WeatherData } from '../model/WeatherData';
 
 function Search(): React.JSX.Element {
+    const [weather, setWeather] = useState<WeatherData | null>(null);
+    useEffect(() => {
+        (async() => {
+            const weatherData = await getWeather('osaka');
+            setWeather(weatherData);
+        })();
+    }, []);
+
     return (
         <View style={styles.container}>
-            <Text>大阪</Text>
+            <Text>{weather?.name}</Text>
             <Image style={styles.weatherIcon} source={require('../assets/01d.png')} resizeMode={'contain'}/>
-            <Text>くもり</Text>
+            <Text>{weather?.weather[0].description}</Text>
             <View style={styles.row}>
-                <Text>30℃</Text>
-                <Text>20℃</Text>
+                <Text>{`${weather?.main.temp_max}℃`}</Text>
+                <Text>{`${weather?.main.temp_min}℃`}</Text>
             </View>
         </View>
     );
