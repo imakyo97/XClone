@@ -7,15 +7,17 @@ import {
 } from 'react-native';
 import { getWeather } from '../repository/weatherRepository';
 import { WeatherData, getWeatherIcon } from '../model/WeatherData';
+import { useSearch } from '../context/SearchContext';
 
 function Search(): React.JSX.Element {
     const [weather, setWeather] = useState<WeatherData | null>(null);
+    const { text } = useSearch();
     useEffect(() => {
         (async() => {
-            const weatherData = await getWeather('osaka');
+            const weatherData = await getWeather(text);
             setWeather(weatherData);
         })();
-    }, []);
+    }, [text]);
 
     return (
         <View style={styles.container}>

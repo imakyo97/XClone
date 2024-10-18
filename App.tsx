@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback } from 'react';
 import { StyleSheet, View, Image, Pressable, Text, TextInput } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -7,6 +7,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import { Home, Search, Community, Notification, Message } from './src/screens';
 import AppBar from './src/components/AppBar';
+import { SearchProvider, useSearch } from './src/context/SearchContext';
 
 const Tab = createBottomTabNavigator();
 
@@ -14,52 +15,54 @@ export default function App() {
   const searchHeader  = useCallback(() => <SearchHeader/>, []);
 
   return (
-    <SafeAreaProvider>
-      <NavigationContainer>
-        <Tab.Navigator>
-          <Tab.Screen
-            name="Home"
-            component={Home}
-            options={{
-              header: HomeHeader,
-              tabBarIcon: HomeIcon,
-            }}
-          />
-          <Tab.Screen
-            name="Search"
-            component={Search}
-            options={{
-              header: searchHeader,
-              tabBarIcon: SearchIcon,
-            }}
-          />
-          <Tab.Screen
-            name="Community"
-            component={Community}
-            options={{
-              header: CommunityHeader,
-              tabBarIcon: CommunityIcon,
-            }}
-          />
-          <Tab.Screen
-            name="Notification"
-            component={Notification}
-            options={{
-              header: NotificationHeader,
-              tabBarIcon: NotificationIcon,
-            }}
-          />
-          <Tab.Screen
-            name="Message"
-            component={Message}
-            options={{
-              header: MessageHeader,
-              tabBarIcon: MessageIcon,
-            }}
-          />
-        </Tab.Navigator>
-      </NavigationContainer>
-    </SafeAreaProvider>
+    <SearchProvider>
+      <SafeAreaProvider>
+        <NavigationContainer>
+          <Tab.Navigator>
+            <Tab.Screen
+              name="Home"
+              component={Home}
+              options={{
+                header: HomeHeader,
+                tabBarIcon: HomeIcon,
+              }}
+            />
+            <Tab.Screen
+              name="Search"
+              component={Search}
+              options={{
+                header: searchHeader,
+                tabBarIcon: SearchIcon,
+              }}
+            />
+            <Tab.Screen
+              name="Community"
+              component={Community}
+              options={{
+                header: CommunityHeader,
+                tabBarIcon: CommunityIcon,
+              }}
+            />
+            <Tab.Screen
+              name="Notification"
+              component={Notification}
+              options={{
+                header: NotificationHeader,
+                tabBarIcon: NotificationIcon,
+              }}
+            />
+            <Tab.Screen
+              name="Message"
+              component={Message}
+              options={{
+                header: MessageHeader,
+                tabBarIcon: MessageIcon,
+              }}
+            />
+          </Tab.Navigator>
+        </NavigationContainer>
+      </SafeAreaProvider>
+    </SearchProvider>
   );
 }
 
@@ -87,13 +90,13 @@ const HomeIcon = ({ focused } : { focused: boolean }) => {
 };
 
 const SearchHeader = () => {
-  const [text, onChangeText] = useState('');
+  const {text, setText} = useSearch();
 
   return (
     <AppBar>
       <TextInput
           style={styles.search}
-          onChangeText={onChangeText}
+          onChangeText={setText}
           value={text}
           placeholder="検索"
         />
