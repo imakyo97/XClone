@@ -1,13 +1,15 @@
 import React from 'react';
 import {
-    SafeAreaView,
     StyleSheet,
 } from 'react-native';
+import { WebView } from 'react-native-webview';
 
 function Community(): React.JSX.Element {
     return (
-        <SafeAreaView style={styles.container}>
-        </SafeAreaView>
+        <WebView
+            source={{ uri: 'https://infinite.red' }}
+            style={styles.container}
+        />
     );
 }
 
